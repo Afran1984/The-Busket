@@ -2,19 +2,15 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 // Basic route
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']); 
 
-// Route with controller
-Route::get('/users', [UserController::class, 'index']);
-
-// Resource routes
+// Resource routes (includes index, show, create, store, edit, update, destroy)
 Route::resource('users', UserController::class);
 
-// Route with parameters
+// Extra custom route with parameter
 Route::get('/user/{id}', [UserController::class, 'show']);
 
 // Route with middleware
